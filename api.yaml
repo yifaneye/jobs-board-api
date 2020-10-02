@@ -1,0 +1,69 @@
+swagger: '2.0'
+info:
+  description: >-
+    This is a job board
+  version: 0.0.1
+  title: Job Board
+basePath: /api
+schemes:
+  - https
+  - http
+paths:
+  /job:
+    post:
+      summary: Add a job
+      description: ''
+      operationId: addJob
+      consumes:
+        - application/json
+        - application/xml
+      produces:
+        - application/xml
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: A job has an id and a name
+          required: true
+          schema:
+            $ref: '#/definitions/Job'
+      responses:
+        '201':
+          description: CREATED
+        '405':
+          description: INVALID
+      security:
+        - basicAuth: []
+    get:
+      summary: List jobs
+      description: List all jobs
+      operationId: getJobs
+      produces:
+        - application/xml
+        - application/json
+      responses:
+        '200':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Job'
+        '404':
+          description: NOT FOUND
+      security:
+        - basicAuth: []
+securityDefinitions:
+  basicAuth:
+    type: basic
+security:
+  - basicAuth: []
+definitions:
+  Job:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 1
+      name:
+        type: string
+        example: Developer
