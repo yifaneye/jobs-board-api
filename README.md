@@ -9,3 +9,21 @@ The GUI of the API is at:
 ```
 http://127.0.0.1:5000/static/swagger-ui/index.html#/
 ```
+
+## Using Docker container
+
+Build the Docker image:
+```
+docker build -t job-board .
+```
+
+Run the Docker container:
+```
+docker run -p 8080:5000 -t job-board __init__.py
+```
+
+The GUI of the API is at:
+```
+http://127.0.0.1:8080/static/swagger-ui/index.html#/
+```
+(Note: the exposed container port 5000 is mapped to the local machine port 8080)
